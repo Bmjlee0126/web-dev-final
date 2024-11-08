@@ -14,14 +14,15 @@
           <img src="../media/logo.png" alt="Logo" />
         </a>
       </div>
+
       <nav>
         <ul>
           <li><a href="home.html">Home</a></li>
 
           <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          <li><a href="nike.html">NIKE</a></li>
+          <li><a href="adidas.html">ADIDAS</a></li>
+          <li><a href="pick.html">MJ's pick</a></li>
 
           <li><a href="calculator.html">Calculator</a></li>
           <li><a href="clock.html">Clock</a></li>
@@ -29,16 +30,23 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <button id="darkModeToggle">Dark Mode</button>
+      <button class="theme-toggle" id="themeToggle">
+        <span class="icon">🌙</span>
+        <span class="text">Dark Mode</span>
+      </button>
     </header>
 
     <main>
       <section class="hero">
-        <h1>Welcome to My Website</h1>
-        <p>Discover amazing content and features</p>
+        <img src="../media/hero.jpg" alt="Hero Background" />
+        <div class="overlay"></div>
+        <div class="text-container">
+          <h1>
+            <span class="static-text">Passion to</span>
+            <span id="animatedText" class="dynamic-text">SHOES</span>
+          </h1>
+        </div>
       </section>
-
-      <!-- More content sections -->
     </main>
 
     <footer>
@@ -47,4 +55,33 @@
 
     <script src="../js/script.js"></script>
   </body>
+  <script>
+    const texts = ["SHOES", "SNEAKERS", "SWIMMING"];
+    const textElement = document.getElementById("animatedText");
+    let counter = 0;
+    let intervalId;
+
+    function changeText() {
+      textElement.classList.add("changing-text");
+      textElement.textContent = texts[counter % texts.length];
+      counter++;
+
+      // 애니메이션 리셋을 위한 타임아웃
+      setTimeout(() => {
+        textElement.classList.remove("changing-text");
+      }, 50);
+
+      // 10회 반복 후 랜덤 텍스트 선택
+      if (counter >= 10) {
+        clearInterval(intervalId);
+        const randomText = texts[Math.floor(Math.random() * texts.length)];
+        textElement.classList.remove("changing-text");
+        textElement.classList.add("final-text");
+        textElement.textContent = randomText;
+      }
+    }
+
+    // 0.1초 간격으로 텍스트 변경
+    intervalId = setInterval(changeText, 100);
+  </script>
 </html>

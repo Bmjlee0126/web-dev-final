@@ -4,7 +4,11 @@
   --text-color: #333;
   /* More CSS variables */
 }
-
+[data-theme="dark"] {
+  --primary-color: #fff;
+  --background-color: #333;
+  --text-color: #fff;
+}
 body {
   margin: 0;
   padding: 0;
@@ -14,7 +18,7 @@ body {
 }
 
 header {
-  background-color: #333;
+  background-color: var(--background-color);
   padding: 1rem;
   display: flex;
   justify-content: space-between;
@@ -32,7 +36,120 @@ nav ul {
 }
 
 nav a {
-  color: white;
+  color: var(--text-color);
   text-decoration: none;
   font-weight: bold;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.text-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-container {
+  font-family: "Arial Black", sans-serif;
+  text-align: center;
+  mix-blend-mode: overlay; /* 배경과 텍스트 블렌딩 */
+}
+
+.static-text {
+  font-size: 8rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  margin: 0;
+  line-height: 1;
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.3); /* 텍스트 외곽선 */
+}
+
+.dynamic-text {
+  font-size: 12rem;
+  font-weight: 900;
+  color: #ffffff;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: -4px;
+  margin: -20px 0 0 0;
+  line-height: 1;
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2),
+    0 0 40px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes textChange {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes finalTextReveal {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    filter: blur(4px);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.changing-text {
+  animation: textChange 0.1s ease-in-out;
+}
+
+.final-text {
+  animation: finalTextReveal 0.8s ease-out forwards;
+}
+
+/* 배경 오버레이 */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  z-index: 1;
 }
