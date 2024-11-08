@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Clock</title>
+    <link rel="stylesheet" href="../CSS/clock.css" />
+    <link rel="icon" href="../media/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="clock-container">
+      <div class="clock">
+        <span class="hours">00</span>
+        <span class="colon">:</span>
+        <span class="minutes">00</span>
+        <span class="colon">:</span>
+        <span class="seconds">00</span>
+        <span class="meridiem">AM</span>
+      </div>
+      <div class="date">January 1, 2024</div>
+      <div class="day">Monday</div>
+    </div>
+
+    <script>
+      function updateClock() {
+        const now = new Date();
+
+        // 시간 요소
+        let hours = now.getHours();
+        const meridiem = hours >= 12 ? "PM" : "AM";
+        hours = hours % 12 || 12;
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+
+        // 날짜 요소
+        const date = now.getDate();
+        const month = now.toLocaleString("en-US", { month: "long" });
+        const year = now.getFullYear();
+        const day = now.toLocaleString("en-US", { weekday: "long" });
+
+        // 시간 업데이트
+        document.querySelector(".hours").textContent = hours
+          .toString()
+          .padStart(2, "0");
+        document.querySelector(".minutes").textContent = minutes
+          .toString()
+          .padStart(2, "0");
+        document.querySelector(".seconds").textContent = seconds
+          .toString()
+          .padStart(2, "0");
+        document.querySelector(".meridiem").textContent = meridiem;
+
+        // 날짜 업데이트
+        document.querySelector(
+          ".date"
+        ).textContent = `${month} ${date}, ${year}`;
+        document.querySelector(".day").textContent = day;
+      }
+
+      // 초기 호출
+      updateClock();
+
+      // 1초마다 업데이트
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: #2f3542;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.clock-container {
+  background: #1e272e;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  color: #0be881;
+}
+
+.clock {
+  font-size: 80px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+.date {
+  font-size: 24px;
+  text-align: center;
+  letter-spacing: 2px;
+  color: #a4b0be;
+  margin-top: 10px;
+}
+
+.day {
+  font-size: 20px;
+  text-align: center;
+  color: #a4b0be;
+  margin-top: 5px;
+}
+
+.seconds {
+  font-size: 40px;
+  color: #05c46b;
+}
+
+.colon {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.meridiem {
+  font-size: 30px;
+  color: #05c46b;
+}
